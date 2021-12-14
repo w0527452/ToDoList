@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ToDoListViewController: UITableViewController {
+class ToDoListViewController: UITableViewController, AddToDoViewControllerDelegate {
+
   var things = [ToDoItem]()
 
   override func viewDidLoad() {
@@ -87,6 +88,29 @@ class ToDoListViewController: UITableViewController {
     let indexPath = IndexPath(row: newRowIndex, section: 0)
     let indexPath2 = IndexPath(row: newRowIndex + 1, section: 0)
     tableView.insertRows(at: [indexPath, indexPath2], with: .automatic)
+  }
+
+  // MARK: - AddToDo Delegates
+  func addToDoViewControllerDidCancel(_ controller: AddToDoViewController) {
+    navigationController?.popViewController(animated: true)
+  }
+
+  func addToDoViewController(_ controller: AddToDoViewController, didFinishAdding thing: ToDoItem) {
+    navigationController?.popViewController(animated: true)
+    let newIndex = things.count
+    things.append(thing)
+
+    let indexPath = IndexPath(row: newIndex, section: 0 )
+    tableView.insertRows(at: [indexPath], with: .automatic)
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "AddToDo" {
+      // cast segue.dest as specific controller
+      let controller = segue.destination as! AddToDoViewController
+      // set AddToDoVC's delegate to this VC
+      controller.delegate = self
+    }
   }
 
 }

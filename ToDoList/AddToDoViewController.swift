@@ -7,11 +7,17 @@
 
 import UIKit
 
-class AddToDoViewController: UITableViewController, UITextFieldDelegate {
+protocol AddToDoViewControllerDelegate: AnyObject {
+  func addToDoViewControllerDidCancel(_ controller: AddToDoViewController )
+  func addToDoViewController(_ controller: AddToDoViewController, didFinishAdding thing: ToDoItem )
+}
 
+class AddToDoViewController: UITableViewController, UITextFieldDelegate {
 
   @IBOutlet weak var doneButton: UIBarButtonItem!
   @IBOutlet weak var textField: UITextField!
+
+  weak var delegate: AddToDoViewControllerDelegate?
 
   override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +38,18 @@ class AddToDoViewController: UITableViewController, UITextFieldDelegate {
 
   // MARK: - Actions
   @IBAction func cancel() {
-    navigationController?.popViewController(animated: true)
+//    navigationController?.popViewController(animated: true)
+    delegate?.addToDoViewControllerDidCancel(self)
   }
 
   @IBAction func done() {
 
-    navigationController?.popViewController(animated: true)
+    let thing = ToDoItem()
+    thing.text = textField.text!
+
+//    navigationController?.popViewController(animated: true)
+    delegate?.addToDoViewController(self, didFinishAdding: thing)
+
   }
 
   // MARK: - Delegates
