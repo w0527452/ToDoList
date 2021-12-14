@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="-84" y="34.632683658170919"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Add Thing-->
         <scene sceneID="lJ1-Xi-AKa">
             <objects>
-                <tableViewController id="dVm-PP-6xg" sceneMemberID="viewController">
+                <tableViewController id="dVm-PP-6xg" customClass="AddToDoViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="rWR-Vo-Z3r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,7 +97,18 @@
                             <outlet property="delegate" destination="dVm-PP-6xg" id="zbg-o8-Vai"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="vCB-XR-fuf"/>
+                    <navigationItem key="navigationItem" title="Add Thing" id="vCB-XR-fuf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CDm-5p-uJm">
+                            <connections>
+                                <action selector="cancel" destination="dVm-PP-6xg" id="s6x-l2-wle"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="7Va-bl-ngd">
+                            <connections>
+                                <action selector="done" destination="dVm-PP-6xg" id="BfI-Hr-GFp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O8O-1Y-lvN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
