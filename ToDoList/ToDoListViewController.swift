@@ -75,21 +75,6 @@ class ToDoListViewController: UITableViewController, AddToDoViewControllerDelega
     label.text = thing.text
   }
 
-  // MARK: - Actions
-  @IBAction func addThing(_ sender: Any) {
-    let newRowIndex = things.count
-    let thing = ToDoItem()
-    thing.text = "New thing"
-    things.append(thing)
-    let thing2 = ToDoItem()
-    thing2.text = "New thing 2"
-    things.append(thing2)
-
-    let indexPath = IndexPath(row: newRowIndex, section: 0)
-    let indexPath2 = IndexPath(row: newRowIndex + 1, section: 0)
-    tableView.insertRows(at: [indexPath, indexPath2], with: .automatic)
-  }
-
   // MARK: - AddToDo Delegates
   func addToDoViewControllerDidCancel(_ controller: AddToDoViewController) {
     navigationController?.popViewController(animated: true)
