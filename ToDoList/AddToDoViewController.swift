@@ -15,6 +15,10 @@ class AddToDoViewController: UITableViewController {
       navigationItem.largeTitleDisplayMode = .never
     }
 
+  override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    return nil
+  }
+
 
   // MARK: - Actions
   @IBAction func cancel() {
