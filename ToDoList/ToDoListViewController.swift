@@ -28,7 +28,7 @@ class ToDoListViewController: UITableViewController {
   // MARK: - TableView data source
   override func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int ) -> Int {
     print("section: \(section)")
-    return 3
+    return things.count
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
