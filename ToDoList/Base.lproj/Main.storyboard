@@ -47,7 +47,7 @@
                     <navigationItem key="navigationItem" title="Things" id="Sgx-tJ-H2E">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="05L-Na-Gnw">
                             <connections>
-                                <segue destination="dVm-PP-6xg" kind="show" id="pai-G1-aTg"/>
+                                <segue destination="dVm-PP-6xg" kind="show" identifier="AddToDo" id="pai-G1-aTg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
