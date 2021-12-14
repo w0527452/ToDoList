@@ -57,6 +57,13 @@ class ToDoListViewController: UITableViewController {
     tableView.deselectRow(at: indexPath, animated: true)
   }
 
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    // data model
+    things.remove(at: indexPath.row)
+    // table view
+    tableView.deleteRows(at: [indexPath], with: .automatic)
+  }
+
   func configureCheckmark( for cell: UITableViewCell, with thing: ToDoItem ) {
 
     cell.accessoryType = thing.checked ? .checkmark : .none
