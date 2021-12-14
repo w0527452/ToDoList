@@ -67,7 +67,8 @@ class ToDoListViewController: UITableViewController, AddToDoViewControllerDelega
 
   func configureCheckmark( for cell: UITableViewCell, with thing: ToDoItem ) {
 
-    cell.accessoryType = thing.checked ? .checkmark : .none
+    let label = cell.viewWithTag(55) as! UILabel
+    label.text = thing.checked ? "√" : ""
   }
 
   func configureText( for cell: UITableViewCell, with thing: ToDoItem ) {
