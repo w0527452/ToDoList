@@ -15,11 +15,12 @@ class ToDoListViewController: UITableViewController, ToDoDetailViewControllerDel
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     navigationController?.navigationBar.prefersLargeTitles = true
+
+    print("List File path: \(listFilePath())")
   }
 
   // MARK: - TableView data source
   override func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int ) -> Int {
-    print("section: \(section)")
     return things.count
   }
 
@@ -106,6 +107,17 @@ class ToDoListViewController: UITableViewController, ToDoDetailViewControllerDel
         controller.thingToEdit = things[indexPath.row]
       }
     }
+  }
+
+  //   https://www.hackingwithswift.com/example-code/system/how-to-find-the-users-documents-directory
+  func documentDir() -> URL {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+
+    return paths[0]
+  }
+
+  func listFilePath() -> URL {
+    return documentDir().appendingPathComponent("ToDos.plist")
   }
 
 }
