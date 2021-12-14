@@ -34,13 +34,11 @@ class ToDoListViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItem", for: indexPath)
 
-    let shit = indexPath.row
-
     let thing = things[indexPath.row]
     let label = cell.viewWithTag(50) as! UILabel
     label.text = thing.text
 
-    configureCheckmark(for: cell, at: indexPath)
+    configureCheckmark(for: cell, with: thing)
 
     return cell
   }
@@ -52,14 +50,14 @@ class ToDoListViewController: UITableViewController {
       let thing = things[indexPath.row]
       thing.checked.toggle()
 
-      configureCheckmark(for: cell, at: indexPath)
+      configureCheckmark(for: cell, with: thing)
     }
     tableView.deselectRow(at: indexPath, animated: true)
   }
 
-  func configureCheckmark( for cell: UITableViewCell, at indexPath: IndexPath ) {
+  func configureCheckmark( for cell: UITableViewCell, with thing: ToDoItem ) {
 
-    cell.accessoryType = things[indexPath.row].checked ? .checkmark : .none
+    cell.accessoryType = thing.checked ? .checkmark : .none
   }
 
 }
