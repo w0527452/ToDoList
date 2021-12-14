@@ -9,7 +9,10 @@ import UIKit
 
 class AddToDoViewController: UITableViewController {
 
-    override func viewDidLoad() {
+
+  @IBOutlet weak var textField: UITextField!
+
+  override func viewDidLoad() {
         super.viewDidLoad()
 
       navigationItem.largeTitleDisplayMode = .never
@@ -26,6 +29,7 @@ class AddToDoViewController: UITableViewController {
   }
 
   @IBAction func done() {
+    print("Text: \(textField.text)")
     navigationController?.popViewController(animated: true)
   }
     

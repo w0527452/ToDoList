@@ -85,15 +85,15 @@
                         <sections>
                             <tableViewSection id="jcG-Qx-u1V">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="snF-5f-453">
-                                        <rect key="frame" x="0.0" y="18" width="375" height="28.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="snF-5f-453">
+                                        <rect key="frame" x="0.0" y="18" width="375" height="29"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="snF-5f-453" id="JNO-01-Zgy">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="28.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AgO-g9-JLu">
-                                                    <rect key="frame" x="16" y="4" width="343" height="19"/>
+                                                    <rect key="frame" x="16" y="4" width="343" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -126,6 +126,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="AgO-g9-JLu" id="cUh-ZJ-tKR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O8O-1Y-lvN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
