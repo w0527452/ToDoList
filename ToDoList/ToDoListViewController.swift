@@ -15,17 +15,6 @@ class ToDoListViewController: UITableViewController, ToDoDetailViewControllerDel
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     navigationController?.navigationBar.prefersLargeTitles = true
-
-    let todo1 = ToDoItem()
-    todo1.text = "walk"
-    things.append(todo1)
-    let todo2 = ToDoItem()
-    todo2.text = "run"
-    things.append(todo2)
-    let todo3 = ToDoItem()
-    things.append(todo3)
-    todo3.text = "fly"
-    todo3.checked = true
   }
 
   // MARK: - TableView data source
