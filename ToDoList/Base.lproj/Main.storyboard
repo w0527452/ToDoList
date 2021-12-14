@@ -86,16 +86,20 @@
                             <tableViewSection id="jcG-Qx-u1V">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="snF-5f-453">
-                                        <rect key="frame" x="0.0" y="18" width="375" height="29"/>
+                                        <rect key="frame" x="0.0" y="18" width="375" height="34.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="snF-5f-453" id="JNO-01-Zgy">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="34.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AgO-g9-JLu">
-                                                    <rect key="frame" x="16" y="4" width="343" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add ToDo" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="AgO-g9-JLu">
+                                                    <rect key="frame" x="16" y="4" width="343" height="25"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done" destination="dVm-PP-6xg" eventType="editingDidEndOnExit" id="j8T-AF-0st"/>
+                                                        <outlet property="delegate" destination="dVm-PP-6xg" id="jTe-If-dBV"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -127,6 +131,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="7Va-bl-ngd" id="kZb-WA-2XW"/>
                         <outlet property="textField" destination="AgO-g9-JLu" id="cUh-ZJ-tKR"/>
                     </connections>
                 </tableViewController>

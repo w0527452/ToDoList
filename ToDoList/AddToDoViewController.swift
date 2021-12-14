@@ -7,16 +7,23 @@
 
 import UIKit
 
-class AddToDoViewController: UITableViewController {
+class AddToDoViewController: UITableViewController, UITextFieldDelegate {
 
 
+  @IBOutlet weak var doneButton: UIBarButtonItem!
   @IBOutlet weak var textField: UITextField!
 
   override func viewDidLoad() {
         super.viewDidLoad()
 
       navigationItem.largeTitleDisplayMode = .never
+      doneButton.isEnabled = false
     }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    textField.becomeFirstResponder()
+  }
 
   override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
     return nil
@@ -29,8 +36,19 @@ class AddToDoViewController: UITableViewController {
   }
 
   @IBAction func done() {
-    print("Text: \(textField.text)")
+
     navigationController?.popViewController(animated: true)
+  }
+
+  // MARK: - Delegates
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let oldText = textField.text!
+    let oldRange = Range(range, in: oldText)!
+    let newText = oldText.replacingCharacters(in: oldRange, with: string)
+
+    doneButton.isEnabled = newText.isEmpty ? false : true
+
+    return true
   }
     
 
