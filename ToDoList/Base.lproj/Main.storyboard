@@ -86,14 +86,14 @@
                             <tableViewSection id="jcG-Qx-u1V">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="snF-5f-453">
-                                        <rect key="frame" x="0.0" y="18" width="375" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="18" width="375" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="snF-5f-453" id="JNO-01-Zgy">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="34.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add ToDo" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="AgO-g9-JLu">
-                                                    <rect key="frame" x="16" y="4" width="343" height="25"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add ToDo" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="19" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AgO-g9-JLu">
+                                                    <rect key="frame" x="16" y="4" width="343" height="25.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>

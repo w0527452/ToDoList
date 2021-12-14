@@ -50,6 +50,12 @@ class AddToDoViewController: UITableViewController, UITextFieldDelegate {
 
     return true
   }
+
+  func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    doneButton.isEnabled = false
+
+    return true
+  }
     
 
     /*
