@@ -90,12 +90,32 @@ class ToDoListViewController: UITableViewController, AddToDoViewControllerDelega
     tableView.insertRows(at: [indexPath], with: .automatic)
   }
 
+  func addToDoViewController(_ controller: AddToDoViewController, didFinishEditing thing: ToDoItem) {
+    navigationController?.popViewController(animated: true)
+    // get index thing element in things
+    if let index = things.firstIndex(of: thing) {
+      let indexPath = IndexPath(row: index, section: 0)
+      // try to get corresponding cell and set its text
+      if let cell = tableView.cellForRow(at: indexPath) {
+        configureText(for: cell, with: thing)
+      }
+    }
+  }
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "AddToDo" {
       // cast segue.dest as specific controller
       let controller = segue.destination as! AddToDoViewController
       // set AddToDoVC's delegate to this VC
       controller.delegate = self
+    } else if segue.identifier == "EditToDo" {
+      let controller = segue.destination as! AddToDoViewController
+      // hnadle cancle and done
+      controller.delegate = self
+      // pass thing to edit
+      if let indexPath = tableView.indexPath(for: sender as! UITableViewCell ) {
+        controller.thingToEdit = things[indexPath.row]
+      }
     }
   }
 

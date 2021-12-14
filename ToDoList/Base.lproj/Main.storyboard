@@ -49,6 +49,9 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="uqO-sT-Jig" secondAttribute="trailing" constant="5" id="meT-0E-sRX"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="dVm-PP-6xg" kind="show" identifier="EditToDo" trigger="accessoryAction" id="gvb-py-hTc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -152,6 +155,9 @@
             <point key="canvasLocation" x="1712.8" y="34.632683658170919"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="gvb-py-hTc"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
