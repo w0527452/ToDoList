@@ -13,6 +13,8 @@ class ToDoListViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
+    navigationController?.navigationBar.prefersLargeTitles = true
+
     let todo1 = ToDoItem()
     todo1.text = "walk"
     things.append(todo1)
@@ -47,7 +49,7 @@ class ToDoListViewController: UITableViewController {
     if let cell = tableView.cellForRow(at: indexPath) {
 
       let thing = things[indexPath.row]
-      
+
       thing.checked.toggle()
 
       configureCheckmark(for: cell, with: thing)
@@ -63,6 +65,21 @@ class ToDoListViewController: UITableViewController {
   func configureText( for cell: UITableViewCell, with thing: ToDoItem ) {
     let label = cell.viewWithTag(50) as! UILabel
     label.text = thing.text
+  }
+
+  // MARK: - Actions
+  @IBAction func addThing(_ sender: Any) {
+    let newRowIndex = things.count
+    let thing = ToDoItem()
+    thing.text = "New thing"
+    things.append(thing)
+    let thing2 = ToDoItem()
+    thing2.text = "New thing 2"
+    things.append(thing2)
+
+    let indexPath = IndexPath(row: newRowIndex, section: 0)
+    let indexPath2 = IndexPath(row: newRowIndex + 1, section: 0)
+    tableView.insertRows(at: [indexPath, indexPath2], with: .automatic)
   }
 
 }
