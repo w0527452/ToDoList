@@ -35,9 +35,8 @@ class ToDoListViewController: UITableViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItem", for: indexPath)
 
     let thing = things[indexPath.row]
-    let label = cell.viewWithTag(50) as! UILabel
-    label.text = thing.text
 
+    configureText(for: cell, with: thing)
     configureCheckmark(for: cell, with: thing)
 
     return cell
@@ -48,6 +47,7 @@ class ToDoListViewController: UITableViewController {
     if let cell = tableView.cellForRow(at: indexPath) {
 
       let thing = things[indexPath.row]
+      
       thing.checked.toggle()
 
       configureCheckmark(for: cell, with: thing)
@@ -58,6 +58,11 @@ class ToDoListViewController: UITableViewController {
   func configureCheckmark( for cell: UITableViewCell, with thing: ToDoItem ) {
 
     cell.accessoryType = thing.checked ? .checkmark : .none
+  }
+
+  func configureText( for cell: UITableViewCell, with thing: ToDoItem ) {
+    let label = cell.viewWithTag(50) as! UILabel
+    label.text = thing.text
   }
 
 }
