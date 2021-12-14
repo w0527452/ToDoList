@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ToDoListViewController: UITableViewController, AddToDoViewControllerDelegate {
+class ToDoListViewController: UITableViewController, ToDoDetailViewControllerDelegate {
 
   var things = [ToDoItem]()
 
@@ -67,7 +67,8 @@ class ToDoListViewController: UITableViewController, AddToDoViewControllerDelega
 
   func configureCheckmark( for cell: UITableViewCell, with thing: ToDoItem ) {
 
-    cell.accessoryType = thing.checked ? .checkmark : .none
+    let label = cell.viewWithTag(55) as! UILabel
+    label.text = thing.checked ? "√" : ""
   }
 
   func configureText( for cell: UITableViewCell, with thing: ToDoItem ) {
@@ -76,11 +77,11 @@ class ToDoListViewController: UITableViewController, AddToDoViewControllerDelega
   }
 
   // MARK: - AddToDo Delegates
-  func addToDoViewControllerDidCancel(_ controller: AddToDoViewController) {
+  func toDoDetailViewControllerDidCancel(_ controller: ToDoDetailViewController) {
     navigationController?.popViewController(animated: true)
   }
 
-  func addToDoViewController(_ controller: AddToDoViewController, didFinishAdding thing: ToDoItem) {
+  func toDoDetailViewController(_ controller: ToDoDetailViewController, didFinishAdding thing: ToDoItem) {
     navigationController?.popViewController(animated: true)
     let newIndex = things.count
     things.append(thing)
@@ -89,12 +90,32 @@ class ToDoListViewController: UITableViewController, AddToDoViewControllerDelega
     tableView.insertRows(at: [indexPath], with: .automatic)
   }
 
+  func toDoDetailViewController(_ controller: ToDoDetailViewController, didFinishEditing thing: ToDoItem) {
+    navigationController?.popViewController(animated: true)
+    // get index thing element in things
+    if let index = things.firstIndex(of: thing) {
+      let indexPath = IndexPath(row: index, section: 0)
+      // try to get corresponding cell and set its text
+      if let cell = tableView.cellForRow(at: indexPath) {
+        configureText(for: cell, with: thing)
+      }
+    }
+  }
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "AddToDo" {
       // cast segue.dest as specific controller
-      let controller = segue.destination as! AddToDoViewController
+      let controller = segue.destination as! ToDoDetailViewController
       // set AddToDoVC's delegate to this VC
       controller.delegate = self
+    } else if segue.identifier == "EditToDo" {
+      let controller = segue.destination as! ToDoDetailViewController
+      // hnadle cancle and done
+      controller.delegate = self
+      // pass thing to edit
+      if let indexPath = tableView.indexPath(for: sender as! UITableViewCell ) {
+        controller.thingToEdit = things[indexPath.row]
+      }
     }
   }
 

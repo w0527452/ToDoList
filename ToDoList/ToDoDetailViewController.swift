@@ -7,23 +7,30 @@
 
 import UIKit
 
-protocol AddToDoViewControllerDelegate: AnyObject {
-  func addToDoViewControllerDidCancel(_ controller: AddToDoViewController )
-  func addToDoViewController(_ controller: AddToDoViewController, didFinishAdding thing: ToDoItem )
+protocol ToDoDetailViewControllerDelegate: AnyObject {
+  func toDoDetailViewControllerDidCancel(_ controller: ToDoDetailViewController )
+  func toDoDetailViewController(_ controller: ToDoDetailViewController, didFinishAdding thing: ToDoItem )
+  func toDoDetailViewController(_ controller: ToDoDetailViewController, didFinishEditing thing: ToDoItem )
 }
 
-class AddToDoViewController: UITableViewController, UITextFieldDelegate {
+class ToDoDetailViewController: UITableViewController, UITextFieldDelegate {
 
   @IBOutlet weak var doneButton: UIBarButtonItem!
   @IBOutlet weak var textField: UITextField!
 
-  weak var delegate: AddToDoViewControllerDelegate?
+  weak var delegate: ToDoDetailViewControllerDelegate?
+  var thingToEdit: ToDoItem?
 
   override func viewDidLoad() {
         super.viewDidLoad()
 
       navigationItem.largeTitleDisplayMode = .never
       doneButton.isEnabled = false
+      if let thingToEdit = thingToEdit {
+        title = "Edit ToDo"
+        textField.text = thingToEdit.text
+        doneButton.isEnabled = true
+      }
     }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -39,16 +46,20 @@ class AddToDoViewController: UITableViewController, UITextFieldDelegate {
   // MARK: - Actions
   @IBAction func cancel() {
 //    navigationController?.popViewController(animated: true)
-    delegate?.addToDoViewControllerDidCancel(self)
+    delegate?.toDoDetailViewControllerDidCancel(self)
   }
 
   @IBAction func done() {
 
-    let thing = ToDoItem()
-    thing.text = textField.text!
-
-//    navigationController?.popViewController(animated: true)
-    delegate?.addToDoViewController(self, didFinishAdding: thing)
+    // Use correct delegate method depending on thingToEdit
+    if let thingToEdit = thingToEdit {
+      thingToEdit.text = textField.text!
+      delegate?.toDoDetailViewController(self, didFinishEditing: thingToEdit)
+    } else {
+      let thing = ToDoItem()
+      thing.text = textField.text!
+      delegate?.toDoDetailViewController(self, didFinishAdding: thing)
+    }
 
   }
 

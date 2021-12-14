@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ToDoItem {
+class ToDoItem: NSObject {
   var text = ""
   var checked = false
 }
