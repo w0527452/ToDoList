@@ -20,6 +20,7 @@ class ToDoDetailViewController: UITableViewController, UITextFieldDelegate {
 
   weak var delegate: ToDoDetailViewControllerDelegate?
   var thingToEdit: ToDoItem?
+  var placeHolder: String?
 
   override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,9 @@ class ToDoDetailViewController: UITableViewController, UITextFieldDelegate {
         textField.text = thingToEdit.text
         doneButton.isEnabled = true
       }
+    if let placeHolder = placeHolder {
+      textField.placeholder = placeHolder
+    }
     }
 
   override func viewWillAppear(_ animated: Bool) {

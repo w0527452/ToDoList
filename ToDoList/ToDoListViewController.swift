@@ -21,7 +21,6 @@ class ToDoListViewController: UITableViewController, ToDoDetailViewControllerDel
 
   // MARK: - TableView data source
   override func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int ) -> Int {
-    print("section: \(section)")
     return things.count
   }
 
@@ -115,6 +114,7 @@ class ToDoListViewController: UITableViewController, ToDoDetailViewControllerDel
       let controller = segue.destination as! ToDoDetailViewController
       // hnadle cancle and done
       controller.delegate = self
+      controller.placeHolder = "Edit Todo"
       // pass thing to edit
       if let indexPath = tableView.indexPath(for: sender as! UITableViewCell ) {
         controller.thingToEdit = things[indexPath.row]
