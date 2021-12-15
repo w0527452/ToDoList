@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ToDoListViewController: UITableViewController, ToDoDetailViewControllerDelegate {
+class ToDoListViewController: UITableViewController, ToDoDetailViewControllerDelegate, UITableViewDragDelegate {
 
   var things = [ToDoItem]()
 
@@ -15,6 +15,8 @@ class ToDoListViewController: UITableViewController, ToDoDetailViewControllerDel
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     navigationController?.navigationBar.prefersLargeTitles = true
+    tableView.dragInteractionEnabled = true
+    tableView.dragDelegate = self
   }
 
   // MARK: - TableView data source
@@ -89,6 +91,18 @@ class ToDoListViewController: UITableViewController, ToDoDetailViewControllerDel
         configureText(for: cell, with: thing)
       }
     }
+  }
+
+  // MARK: - Drag Delegate
+  func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+    let dragItem = UIDragItem(itemProvider: NSItemProvider())
+    dragItem.localObject = things[indexPath.row]
+    return [dragItem]
+  }
+
+  override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    let mover = things.remove(at: sourceIndexPath.row)
+    things.insert(mover, at: destinationIndexPath.row)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
